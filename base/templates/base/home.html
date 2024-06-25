@@ -1,0 +1,215 @@
+{% extends 'main.html' %}
+{% load static %}
+{% load icons %}
+
+
+{% block content %}
+
+<div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+        <div class="carousel-item active" data-bs-interval="10000">
+            <img src="{% static 'images/shopping1-large.jpg' %}">
+            <div class="carousel-content">
+                <h2>Hot Collection</h2>
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Tempore facilis eius illo eaque a tempora! Culpa consequatur reiciendis dolor, officia ipsum facilis fugiat ut illo! Iusto quasi doloribus possimus blanditiis.
+                </p>
+                <a class="link-container" href="{% url 'products' %}"><button>SHOP NOW</button></a>
+            </div>
+        </div>
+
+        <div class="carousel-item" data-bs-interval="10000">
+            <img src="{% static 'images/shopping2-large.jpg' %}">
+            <div class="carousel-content">
+                <h2>Hot Collection</h2>
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Tempore facilis eius illo eaque a tempora! Culpa consequatur reiciendis dolor, officia ipsum facilis fugiat ut illo! Iusto quasi doloribus possimus blanditiis.
+                </p>
+                <a class="link-container" href="{% url 'products' %}"><button>SHOP NOW</button></a>
+            </div>
+        </div>
+
+        <div class="carousel-item" data-bs-interval="10000">
+            <img src="{% static 'images/shopping3-large.jpg' %}">
+            <div class="carousel-content">
+                <h2>Hot Collection</h2>
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Tempore facilis eius illo eaque a tempora! Culpa consequatur reiciendis dolor, officia ipsum facilis fugiat ut illo! Iusto quasi doloribus possimus blanditiis.
+                </p>
+                <a class="link-container" href="{% url 'products' %}"><button>SHOP NOW</button></a>
+            </div>
+        </div>
+        
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>
+
+<main class="responsive-container">
+    
+    
+    <div class="categories-container">
+        <h2 class="centered">Top CATEGORIES</h2>
+        <p  class="centered">Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem, asperiores.</p>
+        
+        <div class="swiper mySwiper">
+            <div class="swiper-wrapper">
+                
+                <div class="swiper-slide">
+                    <div class="image-content">
+                        <span class="overlay"></span>
+                        <div class="card-image">
+                            <img src="{% static 'images/briefcase.png' %}" alt="" class="card-img">
+                        </div>
+                    </div>
+                    <div class="card-content">  
+                        <a>Office Bags</a>
+                    </div>
+                </div>
+                
+                <div class="swiper-slide">
+                    <div class="image-content">
+                        <span class="overlay"></span>
+                        <div class="card-image">  
+                            <img src="{% static 'images/hand-bag.png' %}" alt="" class="card-img">
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <a>Hand Bag</a>
+                    </div>
+                </div>
+                    
+                <div class="swiper-slide">      
+                    <div class="image-content">  
+                        <span class="overlay"></span>
+                        <div class="card-image">
+                            <img src="{% static 'images/women-bag.png' %}" alt="" class="card-img">
+                        </div>
+                    </div>
+                    <div class="card-content">  
+                        <a>Women bag</a>
+                    </div>
+                </div>
+                    
+                <div class="swiper-slide">
+                    <div class="image-content">
+                        <span class="overlay"></span>
+                        <div class="card-image">
+                            <img src="{% static 'images/backpack.png' %}" alt="" class="card-img">
+                        </div>
+                    </div>
+                    <div class="card-content">  
+                        <a>Backpack</a>
+                    </div>
+                </div>
+
+                <div class="swiper-slide">
+                    <div class="image-content">
+                        <span class="overlay"></span>
+                        <div class="card-image">
+                            <img src="{% static 'images/shopping-bag.png' %}" alt="" class="card-img">
+                        </div>
+                    </div>
+                    <div class="card-content">  
+                        <a>Bag</a>
+                    </div>
+                </div>
+                    
+                <div class="swiper-slide">
+                    <div class="image-content">
+                        <span class="overlay"></span>
+                        <div class="card-image">
+                            <img src="{% static 'images/wallet.png' %}" alt="" class="card-img">
+                        </div>
+                    </div>
+                    <div class="card-content">  
+                        <a>Wallet</a>
+                    </div>
+                </div>
+                    
+                <div class="swiper-slide">
+                    <div class="image-content">
+                        <span class="overlay"></span>
+                        <div class="card-image">
+                            <img src="{% static 'images/men-bag.png' %}" alt="" class="card-img">
+                        </div>
+                    </div>
+                    <div class="card-content">  
+                        <a>Men bag</a>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="swiper-button-next swiper-navBtn"></div>
+            <div class="swiper-button-prev swiper-navBtn"></div>
+        </div>
+    </div>
+    
+    <div class="change-container">
+        <h2>A CHANGE OF SEASON</h2>
+        <p>UPDATE YOUR WARDROBE WITH NEW SEASONAL TREND</p>
+        <div class="wardrobe-grid">
+            <div>
+                <img src="{% static 'images/photo1.jpg' %}">
+                <a>NEW ARRIVAL</a>
+            </div>
+            <div>
+                <img src="{% static 'images/photo2.jpg' %}">
+                <a>BEST SELLER</a>
+            </div>
+            <div>
+                <img src="{% static 'images/photo3.jpg' %}">
+                <a>SPECIAL OFFER</a>
+            </div>
+            <div>
+                <img src="{% static 'images/photo4.jpg' %}">
+                <a>TREDING FASHION</a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="our-pick">
+        <h2>OUR PICKS FOR YOU</h2>
+        <p>ALWAYS FIND THE BEST WAYS FOR YOU</p>
+    
+        <div class="our-pick-grid">
+            {% for product in our_picks %}
+                <a href="{% url 'product' pk=product.id %}" class="item-link">
+                    <div class="item">
+                        <img src="{{product.image.url}}">
+                        <div class="item-info">
+                            <p class="item-name">{{product.name}}</p>
+                            <p class="item-price">
+                                {% if product.is_sale %}
+                                    ${{product.sale_price}}  <span class="sale">${{product.price}}</span>
+                                {% else %}
+                                    ${{product.price}}
+                                {% endif %}
+                            </p>
+                            <div>
+                                {% icon 'full-star' %}(10)
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                
+            {% endfor %}
+        </div>
+        
+    </div>
+</main>
+
+
+
+<script src="{% static 'scripts/home-swiper.js' %}"></script>
+
+{% endblock %}

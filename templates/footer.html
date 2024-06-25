@@ -1,0 +1,42 @@
+{% load icons %}
+
+<footer>
+    <div class="footer-content">
+        <div>
+            <h3>CUSTOMER SERVICES</h3>
+            <ul>
+                <li><a class="link-container" href="{% url 'login' %}">Login</a></li>
+                <li><a class="link-container" href="{% url 'register' %}">Register</a></li>
+                <li><a class="link-container" href="{% url 'blog' %}">Blog</a></li>
+                <li><a class="link-container" href="{% url 'contact' %}">Contact</a></li>
+            </ul>
+        </div>
+        <div>
+            <h3>HASA</h3>
+            <ul>
+                <li>
+                    <p>Address:</p>
+                    <p>North Link Building, 10 Admiralty Street, 757695</p>
+                </li>
+                <li><p>Hotline: <span>170044353</span></p></li>
+                <li><p>Email: <span>sales@gmail.com</span></p></li>
+            </ul>
+        </div>
+        <div>
+            <h3>SUBSCRIBE & RECEIVE 10% OFF YOUR FIRST ORDER</h3>
+            <input type="email">
+
+            <div>
+                <h3>CONNECT WITH US</h3>
+                <div class="social-footer">
+                    <div>
+                        <a>{% icon 'twitter' %}</a>
+                        <a>{% icon 'instagram' %}</a>
+                        <a>{% icon 'facebook' %}</a>
+                        <a>{% icon 'linked-in' %}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>

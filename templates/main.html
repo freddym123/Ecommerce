@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+{% load static %}
+{% load bootstrap5 %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+    <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    {% include 'search.html' %}
+    {% include 'cart.html' %}
+    {% include 'nav.html' %}
+    {% block content %}
+
+    {% endblock  %}
+
+    {% include 'footer.html' %}
+
+    <script src="{% static 'scripts/template.js' %}"></script>
+    <script>
+        $(document).on("click", "#cart", function(e){
+        e.preventDefault()
+
+        $.ajax({
+            type: 'GET',
+            url: "{% url  'modal' %}",
+            success: function(json){
+                data = json
+                data.cart_products = JSON.parse(json.cart_products)
+
+                $("#cart-modal-item").empty()
+
+                for(let i = 0; i < data.cart_products.length; i++){
+                    let parent =  document.createElement("div")
+                    parent.classList.add("cart-item")
+                    let container1 = document.createElement("div")
+                    let img = document.createElement("img")
+                    img.src = `/media/${data.cart_products[i].fields.image}`
+                    container1.appendChild(img)
+                    let container2 = document.createElement("div")
+                    let p1 = document.createElement("p")
+                    let p2 = document.createElement("p")
+                    let p3 = document.createElement("p")
+                    p1.textContent = `${data.cart_products[i].fields.name}`
+                    p2.textContent = `(Size: ${data.cart_products[i].fields.size}, Color: ${data.cart_products[i].fields.color}`
+                    p3.textContent = `${data.quantities[data.cart_products[i].pk]} x $${data.cart_products[i].fields.price}`
+                    container2.appendChild(p1)
+                    container2.appendChild(p2)
+                    container2.appendChild(p3)
+                    parent.appendChild(container1)
+                    parent.appendChild(container2)
+                    $("#cart-modal-item").append(parent)
+
+                    $("#cart-modal-total").text("$" + data.totals)
+                    $("#cart-modal-tax").text("$" + data.tax)
+                    $("#cart-modal-subtotal").text("$" + data.subtotal)
+                }
+
+                console.log(data)
+
+            }
+
+        })
+    })
+    </script>
+</body>
+</html>

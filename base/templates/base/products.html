@@ -1,0 +1,58 @@
+{% extends 'main.html' %}
+{% load static %}
+{% load icons %}
+
+{% block content %}
+<main class="responsive-container">
+    <button type="button" id="categories-button">Product Categories</button>
+    <div class="products-page-grid">
+        <div class="filters">
+            <div id="close-category-modal">{% icon 'x' %}</div>
+            <div class="category-filter">
+                <h2>PRODUCT CATEGORIES</h2>
+    
+                <ul class='product-category-links'>
+                    <li><a href="{% url 'products' cat='office bag'%}" class="category-link {{office_bag}}">Office bags</a></li>
+                    <li><a href="{% url 'products' cat='hand bag'%}" class='category-link {{hand_bag}}'>Hand bag</a></li>
+                    <li><a href="{% url 'products' cat='women'%}" class='category-link {{women}}'>Women</a></li>
+                    <li><a href="{% url 'products' cat='backpack'%}" class='category-link {{backpack}}'>Backpack</a></li>
+                    <li><a href="{% url 'products' cat='bag'%}" class='category-link {{bag}}'>Bags</a></li>
+                    <li><a href="{% url 'products' cat='wallet'%}" class='category-link {{wallet}}'>Wallet</a></li>
+                    <li><a href="{% url 'products' cat='men'%}" class='category-link {{men}}'>Men</a></li>
+                </ul>
+            </div>
+        </div>
+    
+        <div class="products-container">
+            {% if products %}
+                {% for product in products %}
+                    <a href="{% url 'product' pk=product.id %}" class="item-link">
+                        <div class="item">
+                            <img src="{{product.image.url}}">
+                            <div class="item-info">
+                                <p class="item-name">{{product.name}}</p>
+                                <p class="item-price">
+                                    {% if product.is_sale %}
+                                        ${{product.sale_price}}  <span class="sale">${{product.price}}</span>
+                                    {% else %}
+                                        ${{product.price}}
+                                    {% endif %}
+                                </p>
+                                <div>
+                                    {% icon 'full-star' %}(10)
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    
+                {% endfor %}
+            {% else %}
+                <p>No Products</p>    
+            {% endif %}
+                
+        </div>
+    </div>
+</main>
+
+<script src="{% static 'scripts/products.js' %}"></script>
+{% endblock %}

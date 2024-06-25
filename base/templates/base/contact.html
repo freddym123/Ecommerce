@@ -1,0 +1,42 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<main class="responsive-container">
+    <h2>Contact</h2>
+
+    <p><span>Address:</span> 12343 Some Address</p>
+    <p><span>Phone Number:</span> 1143436564</p>
+
+    <form method="post">
+        <div class="form-grid">
+            <label>
+                Name
+                <input type="text" placeholder="Name">
+            </label>
+            <label>
+                Email
+                <input type="email" placeholder="Email">
+            </label>
+            <label>
+                Address
+                <input type="text" placeholder="Address">
+            </label>
+            <label>
+                Phone
+                <input type="number" placeholder="Address">
+            </label>
+        </div>
+        
+        <label>
+            Subject
+            <input type="text" placeholder="Subject">
+        </label>
+        <label>
+            Message
+            <textarea placeholder="Message"></textarea>
+        </label>
+
+        <button type="submit">SEND</button>
+    </form>
+</main>
+{% endblock %}

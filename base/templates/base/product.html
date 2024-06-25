@@ -1,0 +1,90 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<main class="responsive-container">
+    <div class="product-page-grid">
+        <div class="product-img-container">
+            <img src="{{product.image.url}}" class="product-img">
+        </div>
+        <div>
+            <h2>{{product.name}}</h2>
+            {% if product.is_sale %}
+                <p>${{product.sale_price}}  <span class="sale">${{product.price}}</span></p>
+            {% else %}
+                <p>${{product.price}}</p>
+            {% endif %}
+    
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ad repudiandae a veniam suscipit cumque quis veritatis sit necessitatibus labore fugiat.</p>
+            <div class="color-option-container">
+                <div>Color</div>
+                <img src="{{product.image.url}}" class="active">
+            </div>
+    
+            <div class="size-container">
+                Size <button class="size-selected">{{product.size}}</button>
+            </div>
+
+            <div class="qty-container">
+                <div>Qty</div>
+                <div class="btn-increase">
+                    <button id="product-dec">-</button>
+                    <div id="product-qty">1</div>
+                    <button id="product-inc">+</button>
+                </div>
+            </div>
+
+            <button class="add-to-cart" type="button" id="add-cart" value="{{product.id}}">ADD TO CART</button>
+        
+            
+        </div>
+    </div>
+    
+</main>
+
+<script>
+    $(document).on('click', "#add-cart", function(e){
+        e.preventDefault()
+        $.ajax({
+            type: 'POST',
+            url: "{% url 'cart_add' %}",
+            data: {
+                product_id: $('#add-cart').val(),
+                product_qty: $('#product-qty').text(),
+                csrfmiddlewaretoken: "{{ csrf_token }}",
+                action: 'post'
+            },
+            success: function(json){
+                document.getElementById("shopping-cart-qty").textContent = json.qty
+            },
+
+            error: function(xhr, errmsg, err){
+
+            }
+        })
+
+
+    })
+
+    $(document).on("click", "#product-inc", function(e){
+        e.preventDefault()
+        let qty = parseInt($('#product-qty').text())
+        if(qty > 9){
+            return
+        } 
+        qty += 1
+        $("#product-qty").text(qty)
+    })
+
+    $(document).on("click", "#product-dec", function(e){
+        e.preventDefault()
+        let qty = parseInt($('#product-qty').text())
+        if(qty < 2){
+            return
+        } 
+        qty -= 1
+        $("#product-qty").text(qty)
+    })
+</script>
+
+{% endblock %}

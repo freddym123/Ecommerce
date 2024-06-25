@@ -1,0 +1,23 @@
+{% load icons %}
+{% load static %}
+
+<div id="cart-modal">
+    <div id="shopping-cart">
+        <div class="shopping-cart-header">
+            <div class="cart-title">Shopping Cart</div> 
+            <div id="close-cart">{% icon 'x' %}</div> 
+        </div>
+        <div class="shopping-cart-items" id="cart-modal-item">
+            
+        </div>
+        <div id="cart-info-container">
+            <div id="cart-grid">
+                <div>Sub Total:</div><div id="cart-modal-total"></div> 
+                <div>Tax:</div><div id="cart-modal-tax"></div> 
+                <div>Total:</div><div id="cart-modal-subtotal"></div> 
+            </div>
+            <a href="{% url 'checkout'%}" class="link-container"><button class="checkout-button">Checkout</button></a>
+            <a href="{% url 'cart' %}" class="link-container"><button class="view-cart-button">View Cart</button></a>
+        </div>
+    </div>
+</div>

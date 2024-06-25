@@ -1,0 +1,11 @@
+{% load icons %}
+
+<div id="search-modal">
+    <div id="search-header">
+        <form  action="{% url 'products'%}" method="get">
+            <input type="text" placeholder="Search for..." name="q">
+            <button type="submit">{% icon 'search' %}</button>
+        </form>
+        <div id="close-search">{% icon 'x' %}</div>
+    </div>
+</div>

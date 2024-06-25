@@ -1,0 +1,128 @@
+{% extends 'main.html' %}
+
+{% block content %}
+    <main class="responsive-container">
+        
+
+        <div class="checkout-grid" id="checkoutgrid">
+            <div>
+                <h2>Shipping Information</h2>
+                {% if user.is_authenticated %}
+                {% else %}
+                    <p>Already have an account?<a href="{% url 'login' %}">Login</a></p>
+                {% endif %}
+                <form method="post" id="shippingForm" data-cities-url="{% url 'load_cities' %}">
+                    {% csrf_token %}
+                    <label>
+                        Full Name:
+                        {{form.fullname}}
+                    </label>
+
+                    <label>
+                        Email:
+                        {{form.email}}
+                    </label>
+
+                    <div id="select-grid">
+                        <label class="select-container">
+                            {{form.country}}
+                            <div class="after">Country</div>
+                        </label>
+                        <label class="select-container">
+                            {{form.city}}
+                            <div class="after">City</div>
+                        </label>
+                    </div>
+
+                    <label>
+                        Address 1:
+                        {{form.address1}}
+                    </label>
+
+                    <label>
+                        Address 2:
+                        {{form.address2}}
+                    </label>
+
+                    <button type="submit" class="checkout-btn">Checkout</button>
+                </form>
+            </div>
+            
+            <div>
+                <h2>Product(s):</h2>
+                <div id="checkout-cart-items-container">
+                    {% for product in products %}
+                        <div class="checkout-item-scroll-container">
+                            <div class="cart-item">
+                                <div class="checkout-item-container">
+                                    <img src="{{product.image.url}}">
+                                    <div class="checkout-item-count">
+                                        {% for key, value in quantities.items %}
+                                            {% if product.id|slugify ==  key %}
+                                                {{value}}
+                                            {% endif %}
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                                <div>
+                                    <p>{{product.name}}</p>
+                                    <p>(Size: S, Color: Red)</p>
+                                </div>
+                            </div>
+                            <div>
+                                {% for key, value in items_total.items %}
+                                    {% if key|slugify == product.id|slugify %}
+                                        ${{value}}
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                        </div>
+                        
+                    {% endfor %}
+
+                </div>
+                <div class="checkout-total-grid">
+                    <div>Subtotal: </div>
+                    <div>${{total}}</div>
+                    <div>Tax:</div>
+                    <div>${{tax}}</div>
+                    <div>Shipping fee:</div>
+                    <div>$0</div>
+                    <div>Total</div>
+                    <div>${{subtotal}}</div>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+    </main>
+
+    <script>
+         $("#id_country").change(function () {
+        const url = $("#shippingForm").attr("data-cities-url");  // get the url of the `load_cities` view
+        const countryId = $(this).val();  // get the selected country ID from the HTML input
+
+        $.ajax({                       // initialize an AJAX request
+            url: url,                    // set the url of the request (= /persons/ajax/load-cities/ )
+            data: {
+                'country_id': countryId       // add the country id to the GET parameters
+            },
+            success: function (data) {   // `data` is the return of the `load_cities` view function
+                $("#id_city").html(data);  // replace the contents of the city input with the data that came from the server
+                /*
+
+                let html_data = '<option value="">---------</option>';
+                data.forEach(function (city) {
+                    html_data += `<option value="${city.id}">${city.name}</option>`
+                });
+                console.log(html_data);
+                $("#id_city").html(html_data);
+
+                */
+            }
+        });
+
+    });
+    </script>
+{% endblock %}

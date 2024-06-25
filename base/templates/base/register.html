@@ -1,0 +1,28 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<main class="responsive-container">
+    <form class="login-form" action="{% url 'register' %}" method="post">
+        {% csrf_token %}
+        <div>
+            <h2>Register an account</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore, eos.</p>
+        </div>
+        {% for field in form %}
+            <label>{{field.label}}</label>
+            {{field}}
+        {% endfor %}
+
+        {% if form.errors %}
+            <p>{{form.errors.0}}</p>
+        {% endif %}
+
+        <button type="submit">REGISTER</button>
+        <p class="form-text">Already have an account?<a href="{% url 'login' %}">Login</a></p>
+
+        <div class="link-social">
+            <p class="form-text">Login with social networks</p>
+        </div>
+    </form>
+</main>
+{% endblock %}
