@@ -362,7 +362,7 @@ div.blog-grid > div:hover{
 }
 
 ul.register-error-container{
-    padding: 0;
+    padding: 0 .5rem;
     margin: .5rem 0;
 }
 
