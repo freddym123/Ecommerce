@@ -31,7 +31,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['ecommerce-production-9bb5.up.railway.app', 'https://ecommerce-production-9bb5.up.railway.app']
 
-
+CSRF_TRUSTED_ORIGINS = ['https://ecommerce-production-9bb5.up.railway.app']
 
 
 # Application definition
@@ -80,8 +80,6 @@ MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
-
-CSRF_TRUSTED_ORIGINS = ['htpps://ecommerce-production-9bb5.up.railway.app']
 
 ROOT_URLCONF = 'ecommerce.urls'
 
