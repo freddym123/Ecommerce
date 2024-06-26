@@ -103,8 +103,8 @@ def Register(request):
             login(request, user)
             return redirect("home")
         else:
-            password = form.password1
-            password2 = form.password2
+            password = request.POST["password1"]
+            password2 = request.POST["password2"]
             form = CustomUserCreationForm(request.POST)
             if password != password2:
                 error_messages = ["Passwords don't match"]
