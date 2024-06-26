@@ -361,6 +361,16 @@ div.blog-grid > div:hover{
     transform: translateY(-5px);
 }
 
+ul.register-error-container{
+    padding: 0;
+    margin: .5rem 0;
+}
+
+ul.register-error-container li{
+    color: rgb(233, 63, 63);
+}
+
+
 div.blog-grid img{
     max-width: 100%;
     min-height: 150px;

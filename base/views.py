@@ -86,6 +86,7 @@ def Logout(request):
 
 def Register(request):
     form = CustomUserCreationForm()
+    error_messages = []
     if request.method == "POST":
         form = CustomUserCreationForm(request.POST)
 
@@ -96,12 +97,21 @@ def Register(request):
             form.save()
             email = form.cleaned_data["email"]
             password = form.cleaned_data["password1"]
+            password2 = form.cleaned_data["password2"]
 
             user = authenticate(username=email, password=password)
             login(request, user)
             return redirect("home")
         else:
-            print(form.error_messages)
+            messages.error(request, )
             form = CustomUserCreationForm(request.POST)
             
-    return render(request, 'base/register.html', {'form': form})
+            if password != password2:
+                error_messages = ["Passwords don't match"]
+            else:
+                error_messages = ["Your password must contain at least 8 characters",
+                       "Your password can't be a commonly used password",
+                       "Your password can't be entirely numeric"]
+            
+            
+    return render(request, 'base/register.html', {'form': form, "error_messages": error_messages})

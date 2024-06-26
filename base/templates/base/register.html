@@ -13,10 +13,11 @@
             {{field}}
         {% endfor %}
 
-        {% if form.errors %}
-            <p>{{form.errors.0}}</p>
-        {% endif %}
-
+        <ul class="register-error-container">
+        {% for error in error_messages %}
+            <li>{{error}}</li>
+        {% endfor %}
+        </ul>
         <button type="submit">REGISTER</button>
         <p class="form-text">Already have an account?<a href="{% url 'login' %}">Login</a></p>
 
