@@ -103,7 +103,6 @@ def Register(request):
             login(request, user)
             return redirect("home")
         else:
-            messages.error(request, )
             form = CustomUserCreationForm(request.POST)
             
             if password != password2:
