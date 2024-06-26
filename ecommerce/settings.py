@@ -31,7 +31,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['ecommerce-production-9bb5.up.railway.app', 'https://ecommerce-production-9bb5.up.railway.app']
 
-CSRF_TRUSTED_ORIGINS = ['ecommerce-production-9bb5.up.railway.app']
+CSRF_TRUSTED_ORIGINS = ['htpps://ecommerce-production-9bb5.up.railway.app']
 
 
 # Application definition
